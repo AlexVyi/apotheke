@@ -1,0 +1,144 @@
+//contains index.hbs which was the original intended landing page and main.hbs
+
+#priceH5
+  font-family: "Proxima Nova", Georgia, sans-serif
+
+.h6Index
+  font-family: "Open Sans regular", sans-serif
+  margin-top: 5px
+  text-align: left!important
+  white-space: nowrap
+  margin-left: -18px
+
+.container
+  font-family: "Open Sans", monospace !important
+
+#mainJumbotron
+  background-color: transparent
+
+.img-thumbnail
+  background-color: transparent
+  border: none
+  max-height: 65%
+
+.album
+  padding-top: 60px!important
+
+.card
+  border-radius: 1.25rem!important
+
+.card.mb-4.box-shadow
+  border: none
+  margin-top: 52px
+
+#col-12SaveOnFB
+  margin-top: 7px
+
+.box-shadow
+  background-color: transparent
+
+.card-header
+  background-color: transparent
+
+.card-header.priceHeader
+  border-top-left-radius: 18px
+  border-top-right-radius: 18px
+  //background-color: #EDEFF2
+  //color: #39444b
+  border-top-style: solid
+
+.card-body.productBody
+  font-family: 'Proxima Nova', Georgia, sans-serif
+  font-weight: 400
+
+.card-text
+  line-height: 150%!important
+  text-align: justify
+  //text-indent: 10px
+  //word-spacing: 5px!important
+  height: 145px
+
+.paperBagsImages
+  display: none
+
+.selectForMultiColoredProducts
+  display: none
+
+i > span
+ content: 'Culori disponibile'
+
+i:hover > span
+  display: none
+  cursor: pointer
+
+i:hover:after
+  color: red
+  content: 'Click pentru culori disponibile'
+  cursor: pointer
+
+
+.productBody
+  border-bottom-left-radius: 18px
+  border-bottom-right-radius: 18px
+  //background-color: #EDEFF2
+  border-bottom-style: solid
+
+//cookie container displayed only once
+#cookie-law
+  height: 100px
+  width: 100%
+  background-color: #363B72
+  color: antiquewhite
+
+#cookie-law-p
+  padding-top: 25px
+  margin-bottom: 0px!important
+
+#close-cookie-banner
+  margin-top: -25px
+  text-decoration: none
+  margin-right: 18px
+  background-color: rgb(241, 214, 0)
+  color: #000
+  padding: .4em .8em
+  float: right
+  font-weight: 600
+  border: 2px solid transparent
+
+@media screen and (max-width: 1025px)
+  #cookie-law-p
+   padding-top: 10px
+  #cookie-law
+    max-height: 150px
+  #close-cookie-banner
+    margin-top: 0
+    width: 20%
+    text-align: center
+    font-size: 12px
+    font-weight: 400
+
+@media screen and (max-width: 415px)
+  #cookie-law
+    max-height: 275px
+    height: 220px
+  #close-cookie-banner
+    text-align: center
+    margin-top: 8px
+    width: 100%
+    font-size: 10px
+    font-weight: 400
+
+@media screen and (min-width: 768px) //disable zoom on smaller screen due to the tap event
+  .zoom
+   background-color: #EDEFF2
+   transition: transform .2s
+   height: auto
+   width: 120px
+   display: block
+
+  .zoom:hover
+   cursor: pointer
+   -ms-transform: scale(0.5) /* IE 9 */
+   -webkit-transform: scale(2.0) /* Safari 3-8 */
+   transform: scale(2.0)
+

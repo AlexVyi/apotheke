@@ -1,0 +1,82 @@
+{{> includes/header-main}}
+{{!-- Load Facebook SDK for JavaScript --}}
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0&appId=159399144906205&autoLogAppEvents=1';
+    fjs.parentNode.insertBefore(js, fjs);
+}(document,'script', 'facebook-jssdk'));</script>
+{{!-- Load Facebook SDK for JavaScript --}}
+
+
+{{!-- Side navigation
+<button onclick="openNav()" id="ham"><span id="hamS"></span>Categorii</button> --}}
+<div class="sidenav" id="left_nav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeMainSideNav()">&times;</a>
+    <form class="form-inline mt-2 mt-md-0 searchCategoryForm" action="/plastic_pharmacy_bags" method="get">
+        <button class="my-2 my-sm-0 searchCategoryButton" type="submit">Pungi farmaceutice plastic</button>
+    </form>
+    <form class="form-inline mt-2 mt-md-0 searchCategoryForm" action="/paper_pharmacy_bags" method="get">
+        <button class="my-2 my-sm-0 searchCategoryButton" type="submit">Pungi farmaceutice hartie</button>
+    </form>
+    {{!--<form class="form-inline mt-2 mt-md-0 searchCategoryForm" action="/plastic_vet_pharmacy_bags" method="get">
+        <button class="my-2 my-sm-0 searchCategoryButton" type="submit">Pungi veterinare plastic</button>
+    </form>
+    <form class="form-inline mt-2 mt-md-0 searchCategoryForm" action="/paper_vet_pharmacy_bags" method="get">
+        <button class="my-2 my-sm-0 searchCategoryButton" type="submit">Pungi veterinare hartie</button>
+    </form>
+    <form class="form-inline mt-2 mt-md-0 searchCategoryForm" action="/plastic_shopping_bags" method="get" >
+        <button class="my-2 my-sm-0 searchCategoryButton" type="submit">Sacose generale plastic</button>
+    </form>
+    <form class="form-inline mt-2 mt-md-0 searchCategoryForm" action="/paper_shopping_bags" method="get">
+        <button class="my-2 my-sm-0 searchCategoryButton" type="submit">Sacose generale hartie</button>
+    </form>
+    <form class="form-inline mt-2 mt-md-0 searchCategoryForm" action="/paper_transport_bags" method="get">
+        <button class="my-2 my-sm-0 searchCategoryButton" type="submit">Pungi din hartie</button>
+    </form>
+    <form class="form-inline mt-2 mt-md-0 searchCategoryForm" action="/paper_bakery_bags" method="get">
+        <button class="my-2 my-sm-0 searchCategoryButton" type="submit">Pungi panificatie si coltare</button>
+    </form>
+    <form class="form-inline mt-2 mt-md-0 searchCategoryForm" action="/platter" method="get">
+        <button class="my-2 my-sm-0 searchCategoryButton" type="submit">Tavite</button>
+    </form>
+    <form class="form-inline mt-2 mt-md-0 searchCategoryForm" action="/plastic_transport_bags" method="get">
+        <button class="my-2 my-sm-0 searchCategoryButton" type="submit">Pungi din plastic cu fermoar</button>
+    </form>
+    <form class="form-inline mt-2 mt-md-0 searchCategoryForm" action="/plastic_garbage_bags" method="get">
+        <button class="my-2 my-sm-0 searchCategoryButton" type="submit">Saci menajeri</button>
+    </form>
+    <form class="form-inline mt-2 mt-md-0 searchCategoryForm" action="/all" method="get">
+        <button class="my-2 my-sm-0 searchCategoryButton" type="submit">Toate produsele</button>
+    </form>--}}
+</div>
+{{!-- end side navigation --}}
+<div class="container-fluid">
+    <div class="jumbotron" id="mainJumbotron">
+        <div class="row">
+            <div class="col-lg-6 col-sm-12" style="margin-bottom: -16%;">
+                <img class="img-thumbnail" src="/images/plastic.jpg">
+                <form class="form-inline mt-2 mt-md-0 searchCategoryForm" action="/plastic_pharmacy_bags" method="get" >
+                    <button class="my-2 my-sm-4 searchCategoryButtonOnMain" type="submit">Pungi farmaceutice plastic</button>
+                </form>
+            </div>
+            <div class="col-lg-6 col-sm-12" style="margin-bottom: -16%">
+                <img class="img-thumbnail" src="/images/papieren.jpg">
+                <form class="form-inline mt-2 mt-md-0 searchCategoryForm" action="/paper_pharmacy_bags" method="get">
+                    <button class="my-2 my-sm-4 searchCategoryButtonOnMain" type="submit">Pungi farmaceutice hartie</button>
+                </form>
+            </div>
+        </div>
+        <div class="row" style="margin-top: 50px">
+            <h1 class="text-center" style="font-family: 'Open Sans bold'">Insa avem o sacosa sau punga, pentru orice domeniu de activitate</h1>
+        </div>
+        <div class="form-row" style="width: 250px;margin: 0 auto;">
+            <form  action="/all" method="get">
+                <button class="searchCategoryButtonOnMain" type="submit" style="margin-left: 20px">Toate produsele</button>
+            </form>
+        </div>
+    </div>
+</div>
+{{> includes/footer-main}}

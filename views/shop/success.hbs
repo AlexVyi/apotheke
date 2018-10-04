@@ -1,0 +1,58 @@
+<div class="container text-center" style="margin-top: 5px" id="orderSuccessWrapper">
+    <img class="d-block mx-auto mb-4" src="/images/success.svg" width="200" height="200">
+
+{{#if login}}
+    {{#if transactionMessages}}
+    <h1>Va multumim pentru cumparaturi!</h1>
+    <p>Detinatorul cardului este : <span class="text-danger text-capitalize"> {{transactionMessages.cardholderName}}</span></p>
+    <p>Id-ul tranzactiei este: <span class="text-danger text-capitalize"> {{transactionMessages.id}}</span></p>
+    <p>Tipul tranzactiei este: <span class="text-danger text-capitalize"> {{transactionMessages.type}}</span></p>
+    <p>Statusul tranzactiei este: <span class="text-danger text-capitalize"> {{transactionMessages.status}}</span></p>
+    <p>Suma tranzactiei este: <span class="text-danger text-capitalize"> {{transactionMessages.amount}}</span></p>
+    <p>Tranzactie creata la: <span class="text-danger text-capitalize"> {{transactionMessages.createdAt}}</span></p>
+    <p>Tranzactie actulizata la: <span class="text-danger text-capitalize"> {{transactionMessages.updatedAt}}</span></p>
+    <p>Tipul cardului: <span class="text-danger text-capitalize"> {{transactionMessages.cardType}}</span></p>
+    <p>Locatia emiterii cardului: <span class="text-danger text-capitalize"> {{transactionMessages.customerLocation}}</span></p>
+        <p>Curier: <span class="text-danger text-capitalize">Urgent Cargus</span></p>
+        <p>Pentru informatii suplimentare sau orice alte situatii apelati gratuit: <span class="text-danger text-capitalize">0800 41 02 02. L-V 08:00-16:00</span></p>
+
+        <a class="succesPageButton" href="/">Acasa</a>
+    {{else}}
+    <h1>Va multumim pentru cumparaturi!</h1>
+    <p>Ati optat pentru plata la livrare.</p>
+        <p>Curier: <span class="text-danger text-capitalize">Urgent Cargus</span></p>
+        <p>Pentru informatii suplimentare sau orice alte situatii apelati gratuit: <span class="text-danger text-capitalize">0800 41 02 02. L-V 08:00-16:00</span></p>
+
+        <a class="succesPageButton" href="/">Acasa</a>
+    {{/if}}
+{{else}}
+    <h1>Va multumim pentru cumparaturi!</h1>
+       {{#if transactionMessages}}
+        <p>Detinatorul cardului este : <span class="text-danger text-capitalize"> {{transactionMessages.cardholderName}}</span></p>
+        <p>Id-ul tranzactiei este: <span class="text-danger text-capitalize"> {{transactionMessages.id}}</span></p>
+        <p>Tipul tranzactiei este: <span class="text-danger text-capitalize"> {{transactionMessages.type}}</span></p>
+        <p>Statusul tranzactiei este: <span class="text-danger text-capitalize"> {{transactionMessages.status}}</span></p>
+        <p>Suma tranzactiei este: <span class="text-danger text-capitalize"> {{transactionMessages.amount}}</span></p>
+        <p>Tranzactie creata la: <span class="text-danger text-capitalize"> {{transactionMessages.createdAt}}</span></p>
+        <p>Tranzactie actulizata la: <span class="text-danger text-capitalize"> {{transactionMessages.updatedAt}}</span></p>
+        <p>Tipul cardului: <span class="text-danger text-capitalize"> {{transactionMessages.cardType}}</span></p>
+        <p>Locatia emiterii cardului: <span class="text-danger text-capitalize"> {{transactionMessages.customerLocation}}</span></p>
+
+       <h4 style="color: #06417D">Va rugam sa printati datele tranzactiei pentru orice posibile referiri ulterioare, ce pot aparea pana dupa receptia cu succes a comenzii dvs.</h4>
+           <p>Curier: <span class="text-danger text-capitalize">Urgent Cargus</span></p>
+           <p>Pentru informatii suplimentare sau orice alte situatii apelati gratuit: <span class="text-danger text-capitalize">0800 41 02 02. L-V 08:00-16:00</span></p>
+
+           <a class="succesPageButton" href="/">Acasa</a>
+        <button  type="button" id="printButton" onclick="printOrder('orderSuccessWrapper')">Exporta in pdf</button>
+        {{else}}
+
+        <h1>Va multumim pentru cumparaturi!</h1>
+        <p>Ati optat pentru plata la livrare.</p>
+           <p>Curier: <span class="text-danger text-capitalize">Urgent Cargus</span></p>
+           <p>Pentru informatii suplimentare sau orice alte situatii apelati gratuit: <span class="text-danger text-capitalize">0800 41 02 02. L-V 08:00-16:00</span></p>
+        <a class="succesPageButton" href="/">Acasa</a>
+       {{/if}}
+{{/if}}
+    </div>
+
+{{> includes/footer-success}}

@@ -1,0 +1,23 @@
+{{> includes/logout-nav}}
+<div class="container">
+    <div class="row text-center">
+        {{#if infoMsg}}
+            <div class="text-info">
+                <h2>{{infoMsg}}</h2>
+            </div>
+        {{/if}}
+    </div>
+    <div class="row text-center" id="logoutRow">
+        <div class="col-sm-12 col-md-12 col-lg-12">
+             <h1 id="logoutH1">Va multumim ca ati folosit site-ul nostru!</h1>
+             <img class="img-fluid" src="/images/logoutmain.svg" alt="" width="50" height="50" style="margin-top: 50px">
+             <h3 id="logoutH3">Ati fost delogat cu succes.</h3>
+             <a href="/users/signin" id="logoutPageButton" style="margin-top: 50px">Intra din nou in cont</a>
+        </div>
+    </div>
+</div>
+
+{{> includes/footer-logout}}
+
+
+

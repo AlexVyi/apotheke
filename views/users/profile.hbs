@@ -1,0 +1,249 @@
+{{> includes/profile-nav}}
+
+
+<div class="container" id="mainProfileContainer">
+    <div class="row" id="titleRow">
+        {{#if login}}
+            <div class="col-sm-8">
+                <h2 id="profileH2" class="h2 mb-2">Esti in cont</h2>
+            </div>
+            <div class="col-sm-4">
+                <img class="img-fluid" src="/images/profileavatar.svg" alt="" width="180" height="180">
+            </div>
+        {{!--in app.js we requested the user to be stored in session so we can retrieve the details with hbs--}}
+        {{/if}}
+    </div>
+    <div id="ordersRow" style="margin-bottom: 50px">
+        <div class="row" style="max-height: 70vh;" id="pageHeader">
+        <div class="text-center" id="orders">
+            <h4 class="card-header" id="card-header">Comenzile mele</h4>
+            {{#each orders}}{{!-- {{@key}} returns the index for each array you loop through in the view {{@key}}:{{this}} returns the whole array --}}
+                    <button  type="button" data-toggle="collapse" data-target="#orderWrapper{{@key}}" aria-expanded="false" aria-controls="orderWrapper{{@key}}" id="openOrder"><span class="inner"> Deschide/Inchide comanda {{formatDate this.date}}</span></button>
+                    <div id="orderWrapper{{@key}}" class="col-sm-12 col-md-12 col-lg-12 collapse ordersWrapper">
+                        <h4 class="card-title order-margin orderMarginH4" id="orderMarginH4">Comanda din data {{formatDate this.date}} nr. {{this._id}}</h4>{{!-- formatdate -- helper function from helpersHbS made with moment--}}
+                        <h4 class="order-margin orderMarginH4">Produse</h4>
+                        {{#each this.items}}
+                            <ul class="order-margin" >
+                                <li style="text-decoration: none">
+                                    {{this.item.name}}
+                                    {{this.price}} lei
+                                    | {{this.qty}} set
+                                </li>
+                                <li>Ecotaxa {{this.ecotaxa}} lei</li>
+                            </ul>
+                        {{/each}}
+                        <br>
+                        <p class="order-margin">Subtotal produse: {{this.cart.subTotalPrice}} lei</p>
+                        <p class="order-margin">Cost transport: {{this.cart.shipment}} lei</p>
+                        <p class="order-margin">T.V.A.: {{this.cart.tva}} lei</p>
+                        <br>
+                        <h5 class="order-margin">Total achitat: {{this.cart.totalPrice}} lei</h5>
+                        <br>
+                        <h4 class="order-margin orderMarginH4">Datele cumparatorului</h4>
+                        <p class="order-margin">Prenume: {{first_name}} </p>
+                        <p class="order-margin">Nume: {{last_name}}</p>
+                        <p class="order-margin">Strada: {{street}} {{number}}</p>
+                        <p class="order-margin">Orasul: {{city}}</p>
+                        <p class="order-margin">Judetul: {{county}}</p>
+                        <p class="order-margin">Cod postal: {{zip}}</p>
+                        <p class="order-margin">Telefon: {{phone}}</p>
+                        <p class="order-margin">E-mail: {{email}}</p>
+                        <br>
+                        {{# if this.company.name}}
+                            <h4 class="order-margin orderMarginH4">Date companie </h4>
+                            <p class="order-margin">Denumire: {{this.company.name}}</p>
+                            <p class="order-margin">C.U.I: {{this.company.cui}}</p>
+                            <p class="order-margin"> {{this.company.j}}</p>
+                            <p class="order-margin">Banca: {{this.company.bank}}</p>
+                            <p class="order-margin">Strada: {{this.company.company_street}} {{this.company.company_street_no}}</p>
+                            <p class="order-margin" >Orasul: {{this.company.company_city}}</p>
+                            <p class="order-margin">Judetul: {{this.company.company_county}}</p>
+                            <p class="order-margin">Cod: {{this.company.company_zip}}</p>
+                        {{!--else}}
+                            <h4 class="order-margin orderMarginH4" style="display: none">Datele cumparatorului</h4>
+                            <p class="order-margin">Prenume: {{first_name}} </p>
+                            <p class="order-margin">Nume: {{last_name}}</p>
+                            <p class="order-margin">Strada: {{street}} {{number}}</p>
+                            <p class="order-margin">Orasul: {{city}}</p>
+                            <p class="order-margin">Judetul: {{county}}</p>
+                            <p class="order-margin">Cod postal: {{zip}}</p>
+                            <p class="order-margin">Telefon: {{phone}}</p>
+                            <p class="order-margin">E-mail: {{email}}</p>--}}
+                        {{/if}}
+                        {{#if transaction.id}}
+                            <h4 class="order-margin orderMarginH4">Detalii tranzactie card: </h4>
+                            <ul class="order-margin">
+                                <li>Tipul tranzactiei: {{transaction.transactionType}} </li>
+                                <li>Detinatorul cardului: {{transaction.cardholderName}}</li>
+                                <li>Id-ul tranzactiei: {{transaction.id}}</li>
+                                <li>Statusul tranzactiei: {{transaction.status}}</li>
+                                <li>Suma debitata de pe card: {{transaction.amount}} lei</li>
+                                <li>Locatia emiterii cardului: {{transaction.customerLocation}}</li>
+                            </ul>
+                            <p class="order-margin" style="margin-top: 15px">Curier: Urgent Cargus.</p>
+                            <p class="order-margin" style="margin-top: 15px">Pentru informatii suplimentare sau orice alte situatii apelati gratuit: 0800 41 02 02. L-V 08:00-16:00</p>
+
+                        {{else}}
+                            <h4 class="order-margin orderMarginH4">Detalii tranzactie: </h4>
+                            <p class="order-margin" style="margin-top: 15px">La aceasta comanda ati optat pentru plata la livrare.</p>
+                            <p class="order-margin" style="margin-top: 15px">Curier: Urgent Cargus.</p>
+                            <p class="order-margin" style="margin-top: 15px">Pentru informatii suplimentare sau orice alte situatii apelati gratuit: 0800 41 02 02. L-V 08:00-16:00</p>
+
+                        {{/if}}
+                        <button class="btn btn-outline-info btn-md" type="button" id="printButton" onclick="printOrder('orderWrapper{{@key}}')">Exporta in pdf</button>
+                    </div>
+            {{/each}}
+          </div>
+        </div>
+    </div>
+    <hr>
+    <div class="row text-center" style="margin-top: 50px;margin-bottom: 50px">
+        <img class="img-fluid" src="/images/opinion.svg" alt="" width="150" height="150">
+        <div class="col-sm-10">
+            {{#if hasInfo}}
+                <div class=" alert alert-success">
+                    {{# each infoMessages}}
+                        <p>{{this}}</p>
+                    {{/each}}
+                </div>
+            {{/if}}
+            {{#if hasErrors}}{{!-- hasErrors with s.Remember of having on profile page, hasError also --}}
+                <div class="alert alert-danger">
+                    {{# each messages}}
+                        <p>{{this}}</p>
+                    {{/each}}
+                </div>
+            {{/if}}
+            <form action="/users/profile/sendOpinion" method="post" id="sendOpinionForm">{{!--if not this /../../sendOpinion route on form action, it acts as if submiting the next form and thwrows error because of the lack of the credentials--}}
+                {{#if hasErrors}}
+                    <h3 class="h3 mb-3 h3Opinion">dar pentru ca ne-ati testat vigilenta, mai primiti 5% discount la urmatoarea comanda.</h3>
+                    <small>*Oferta este valabila pentru o singura comanda</small>
+                    <label for="inputOpinia"></label>
+                    <textarea class="text-center" id="inputOpinia" name="opinion" style="width:100%;max-width: 100%" disabled></textarea>
+                    <input type="hidden" name="_csrf" value="{{csrfToken}}">
+                    <a  class="btn showOrders" href="/users/profile">Afiseaza comenzile mele</a>
+                {{else}}
+                {{!--workarround is to display the button for main account after and only if flash message is displayed after submitting this route.See bellow the if--}}
+                    <h3 class="h3 mb-3 h3Opinion">Trimiteti opinia dvs si castigati 10% la urmatoarea comanda.</h3>
+                    <label for="inputOpinia"></label>
+                    <textarea class="text-center" id="inputOpinia" name="opinion" style="width:100%;max-width: 100%" required></textarea>
+                    <input type="hidden" name="_csrf" value="{{csrfToken}}">
+                    <button class="btn" type="submit" id="sendOpinionButton">Trimite</button>
+                    {{#if hasInfo}}{{!--if has info(so not an error message) give the user the possibility to see his order and rest of data again--}}
+                        <a  class="btn showOrders" href="/users/profile">Afiseaza comenzile mele</a>
+                    {{/if}}
+
+                {{/if}}
+            </form>
+            <small style="color: #122C30">Gasiti surpriza din cont si contactati-ne!Apoi profitati :)</small>
+        </div>
+    </div>
+
+    {{#if session.cart}}
+        <hr>
+        <div class="row text-center" style="margin-top: 50px;margin-bottom: 50px">
+            <div class="d-flex flex-column">
+                <h3 class="text-center" id="sendUserToPayH3">Aveti produse in cos :)</h3>
+                <a  class="sendUserToPayButton" href="/checkouts">Spre plata cu cardul</a>
+                <a  class="sendUserToPayButton" href="/checkout-upon-delivery" role="button" style="margin-top: 5px">Spre plata la livrare</a>
+            </div>
+        </div>
+    {{/if}}
+    <hr>
+</div>
+
+<div class="container" id="changePassProfileContainer">
+    {{#if session.userG}}{{!-- if session with google u dont need 'change pass form' and the 'delete account form' wiht password --}}
+        <div class="row text-center" style="margin-top: 50px">
+            <div class="col-sm-6">
+                <h4 class="text-center">Zona pericol</h4>
+                <img class="mb-4" src="/images/delete.svg" alt="" width="52" height="52">
+                <form method="post" action="/users/profile/{{session.userG}}">
+                    <div class="form-group mb-2">
+                        <p>*Fiind logat prin intermediul <strong>Google,</strong> trebuie doar sa apasati  <strong>'Sterge contul'.</strong> <strong>NU</strong> avem access la parola dvs de la Google, iar datele din acel cont vor ramane intacte.</p>
+                      </div>
+                    <div class="form-group mb-2">
+                        <input type="text"  placeholder="Va efectua o stergere completa a datelor din acest cont." class="form-control" disabled id="inputDeleteAccount">
+                    </div>
+                    <button class="btn" type="submit" id="deleteAccountButton">Sterge contul</button>
+                    <input type="hidden" name="_csrf" value="{{csrfToken}}">
+                </form>
+                <small>Atentie!Datele vor fii irecuperabile.</small>
+            </div>
+        </div>
+    {{else if session.userFb}}{{!-- if session with facebook u dont need 'change pass form' and the 'delete account form' wiht password --}}
+        <div class="row text-center" style="margin-top: 50px">
+            <div class="col-sm-6">
+                <h4 class="text-center">Zona pericol</h4>
+                <img class="mb-4" src="/images/delete.svg" alt="" width="52" height="52">
+                <form method="post" action="/users/profile/{{session.userFb}}">
+                    <div class="form-group mb-2">
+                        <p>*Fiind logat prin intermediul <strong>Facebook,</strong> trebuie doar sa apasati  <strong>'Sterge contul'.</strong> <strong>NU</strong> avem access la parola dvs de la Facebook, iar datele din acel cont vor ramane intacte.</p>
+                    </div>
+                    <div class="form-group mb-2">
+                        <input type="text"  placeholder="Va efectua o stergere completa a datelor din acest cont." class="form-control" disabled id="inputDeleteAccount">
+                    </div>
+                    <button class="btn" type="submit" id="deleteAccountButton">Sterge contul</button>
+                    <input type="hidden" name="_csrf" value="{{csrfToken}}">
+                </form>
+                <small>Atentie!Datele vor fii irecuperabile.</small>
+            </div>
+        </div>
+
+    {{else}}
+        <div class="row text-center" style="margin-top: 50px">
+            <div class="col-sm-6">
+                {{#if hasError}}{{!--hasError without the s because it messes up the form above.look up the changepass.js --}}
+                    <div class="alert alert-danger">
+                        {{# each messages}}
+                            <p>{{this}}</p>
+                        {{/each}}
+                    </div>
+                {{/if}}
+                {{#if hasInfos}}{{!--hasInfo with the 's' because it also messes up the form above.look up the changepass.js --}}
+                    <div class=" alert alert-success">
+                        {{# each infoMessages}}
+                            <p>{{this}}</p>
+                        {{/each}}
+                    </div>
+                {{/if}}
+
+                <h4 class="text-center">Schimba parola</h4>
+                <img class="mb-4" src="/images/changepass.svg" alt="" width="52" height="52">
+                <form action="/users/profile" method="post" id="changePassProfileForm">
+                    <div class="form-group mb-2" style="margin-right: 5px">
+                        <label for="inputEmail" class="sr-only">New Password</label>
+                        <input type="password" name="password" id="inputPasswordNew" class="form-control" placeholder="Noua parola" required="" autofocus="">
+                    </div>
+                    <div class="form-group mb-2" style="margin-right: 5px">
+                        <label for="inputPassword" class="sr-only"> Confirm Password</label>
+                        <input type="password" name="confirm" id="inputPasswordConfirm" class="form-control" placeholder="Confirma parola" required="">
+                    </div>
+
+                    <input type="hidden" name="_csrf" value="{{csrfToken}}">
+
+                    <button class="btn" type="submit" id="changePassButton">Actualizeaza</button>
+                </form>
+                <small>Trebuie sa reintrati in cont.</small>
+            </div>
+            <div class="col-sm-6">
+                <h4 class="text-center">Zona pericol</h4>
+                <img class="mb-4" src="/images/delete.svg" alt="" width="52" height="52">
+                <form method="post" action="/users/profile/{{session.user}}">
+                    <div class="form-group mb-2">
+                        <input type="password" name="password" placeholder="Parola" class="form-control" required="" id="inputDeleteAccountPassword">
+                    </div>
+                    <div class="form-group mb-2">
+                        <input type="text"  placeholder="Va efectua o stergere completa a datelor din acest cont." class="form-control" disabled id="inputDeleteAccount">
+                    </div>
+                    <button class="btn" type="submit" id="deleteAccountButton">Sterge contul</button>
+                    <input type="hidden" name="_csrf" value="{{csrfToken}}">
+                </form>
+
+                <small>Atentie!Datele vor fii irecuperabile.</small>
+            </div>
+        </div>
+    {{/if}}
+</div>
+
+

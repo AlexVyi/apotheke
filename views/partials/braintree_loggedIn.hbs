@@ -1,0 +1,50 @@
+{{#if messages}}
+    {{#each messages}}
+        <div class="alert-danger">
+            {{ this.msg}}
+        </div>
+    {{/each}}
+{{/if}}
+
+<div id="dropin-wrapper">
+    <div id="checkout-message"></div>
+    <div id="dropin-container"></div>
+    <button  formaction="/checkoutLoggedIn" class="submit-button" type="submit">Efectuati plata</button>
+</div>
+
+<script>
+    var form = document.querySelector('#loggedIn');
+    var token = '{{{clientToken}}}'//this is a retrieved string, in javascript, via a handlebars variable.if you do 'this.clientToken' above the script with handlebars syntax, not quotes,you get the same thing
+
+    braintree.dropin.create({
+            // Insert your tokenization key here
+            authorization: token,
+            container: '#dropin-container',
+            card: {
+                cardholderName: true
+            }
+            //locale: 'de_DE'
+        }, function (createErr, instance) {
+            form.addEventListener('submit', function (event) {
+                event.preventDefault();
+                if (createErr) {
+                    return console.log(createErr);
+                }
+
+                instance.requestPaymentMethod(function (err, payload) {
+                    if (err) {
+                        $('#checkout-message').html('<h1 class="text-danger">Error</h1>' + '<br>' + '<p>Unul, sau mai multe elemente ale cardului lipsesc!</p>' +
+                                ' <a role="button" href="/shopping-cart" class="btn btn-sm btn-outline-danger">Inapoi la cosul de cumparaturi</a>');
+
+                        return $('#submit-button').remove();
+                    }
+
+                    // Add the nonce to the form and submit
+                    document.querySelector('#nonce').value = payload.nonce;
+                    form.submit();
+                });
+            });
+
+        });
+
+</script>

@@ -1,0 +1,128 @@
+input
+  outline: 0
+  -webkit-appearance: textfield
+  background-color: #FFF
+  background-image: none
+  border: 1px solid #E0DACF
+  border-radius: 5px
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075)
+
+input:focus
+  outline: 0
+  background-image: none
+  border: 1px solid #E0DACF
+  border-radius: 5px
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075)
+  color: #2897DD
+  background-color: #2897DD
+
+input::placeholder
+  font-size: 19px
+  text-align: center
+  font-family: "Proxima Nova"
+
+
+.form-control:focus
+  outline: 0
+  background-image: none
+  border-radius: 5px
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075)
+  color: #2897DD
+  transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s
+  transition-property: border-color, box-shadow
+  transition-duration: 0.15s, 0.15s
+  transition-timing-function: ease-in-out, ease-in-out
+  transition-delay: initial
+  background-color: #EDEFF2!important
+  font-family: "Proxima Nova"
+
+input[type="text"] .form-control:focus
+  outline: 0
+
+input[type="password"] .form-control:focus
+  outline: 0
+
+
+.form-control
+  outline: 0
+  background-image: none
+  border-radius: 5px
+  box-shadow: inset 0 5px 5px rgba(0,0,0,.075)
+  color: #2897DD
+  transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s
+  transition-property: border-color, box-shadow
+  transition-duration: 0.15s, 0.15s
+  transition-timing-function: ease-in-out, ease-in-out
+  transition-delay: initial
+  background-color: #EDEFF2!important
+
+
+#inputPasswordTokenConfirm
+  margin-top: 15px!important
+
+#inputDeleteAccount
+  background-color: #f26f61!important
+  color: #f26f61!important
+
+#inputDeleteAccount::placeholder
+  color: white
+  font-size: 12px
+
+#inputDeleteAccountPassword::placeholder
+  color: #f26f61
+
+#inputDeleteAccountPassword:focus
+  outline: 0
+  color: #f26f61!important
+
+
+//nav search form
+#searchFormInput:before
+  border: none
+  box-shadow: none
+
+#searchFormInput
+  font-family: "Open Sans regular", sans-serif!important
+  border: none
+  box-shadow: none
+  border-bottom: 1px solid black
+  border-radius: 0!important
+  background-image: url("/images/search.svg")
+  background-position: 18px center
+  background-repeat: no-repeat
+  background-size: 18px
+  background-color: #EDEFF2!important
+  padding-left: 48px
+  -webkit-appearance: none
+
+#searchFormInput:focus
+  box-shadow: none
+  border-bottom: 1px solid #f26f61
+  border-radius: 0!important
+  -webkit-appearance: none
+
+#searchFormInput::placeholder
+  color: black!important
+  font-family: "Open Sans regular", sans-serif!important
+
+#searchFormInput:focus::placeholder
+  color: #f26f61!important
+
+#searchFormInput:focus,
+[contenteditable]
+  caret-color: #f26f61
+  -webkit-appearance: none
+
+//style the drop down from the search for in all browsers.those two classes belong to the browsers
+.ui-widget-content .ui-state-focus
+  background: #f26f61
+  border: 1px solid #f26f61
+
+//sign in page
+#inputEmail,
+#inputPasswordsign
+ background-color: #EDEFF2!important
+
+@media only screen and (max-width: 414px)
+  .form-control::placeholder
+    font-size: 12px

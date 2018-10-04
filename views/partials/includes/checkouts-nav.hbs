@@ -1,0 +1,37 @@
+
+<nav class="navbar navbar-expand-lg"> {{!--navbar-dark bg-dark (case u wanted dark)--}}
+    <a class="navbar-brand" href="/shopping-cart" id="brand">EVVS™</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon">&#9776;</span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        {{!-- <form class="form-inline mt-2 mt-md-0" action="/users/profile" method="get">
+             <input class="form-control mr-sm-2" type="text" placeholder="Cauta in comenzi" aria-label="Search" name="search" id="searchFormInput">
+             <button class="my-2 my-sm-0" type="submit" id="searchFormButton">Cauta</button>
+         </form>--}}
+        <ul class="navbar-nav mr-auto">
+
+        </ul>
+         <ul class="navbar nav navbar-right">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    {{#if login}}
+                        <small style="color: red;font-family: 'Open Sans regular'">Esti logat</small>
+                    {{/if}}
+                    Contul meu
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    {{#if login}}
+                        <a class="dropdown-item" href="/users/profile" style="padding-left: 14px"><img src="/images/mydata.svg" width="30" height="30" alt="" style="padding-bottom: 4px">Datele mele</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="/users/logout" style="padding-left: 20px!important;"><img src="/images/logout.svg" width="20" height="20" alt="" style="padding-bottom: 4px">Delogheaza-te</a>
+                    {{else}}
+                        <a class="dropdown-item" href="/users/signup"><img src="/images/newaccount.svg" width="20" height="20" alt="" style="padding-bottom: 4px">Cont nou</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="/users/signin"><img src="/images/enteraccount.svg" width="30" height="30" alt="" style="padding-bottom: 4px">Intra in cont</a>
+                    {{/if}}
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>

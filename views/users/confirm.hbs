@@ -1,0 +1,33 @@
+<div class="container text-center">
+<form action="" method="post" class="form-signin text-center">
+    <h1 class="h3 mb-3 font-weight-normal">Confirma contul</h1>
+    {{#if hasErrors}}
+        <div class="alert-danger">
+            {{# each messages}}
+                <p>{{this}}</p>
+            {{/each}}
+        </div>
+    {{/if}}
+    {{#if hasInfo}}
+        <div class="alert-success">
+            {{# each infoMessages}}
+                <p>{{this}}</p>
+            {{/each}}
+        </div>
+    {{/if}}
+
+       <label for="inputEmail" class="sr-only"></label>
+       <input type="text" name="email" id="inputEmail" class="form-control" placeholder="Adresa de e-mail" required="" autofocus="">
+       <br>
+       <input type="hidden" name="_csrf" value="{{csrfToken}}">
+       <button class="btn btn-lg btn-outline-primary btn-block"  type="submit">Confirma</button>
+
+    <p class="mt-5 mb-3 text-muted">©2018 EVVS™</p>
+</form>
+    <div class="text-center">
+       <img class="mb-4" src="/images/confirm.svg" alt="" width="180" height="180">
+    </div>
+
+</div>
+
+{{> includes/footer}}

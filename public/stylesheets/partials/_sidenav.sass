@@ -1,0 +1,124 @@
+/* The sidebar menu */
+.sidenav
+  /*height: 100% 100% Full-height */
+  width: 0 /* 0 width - change this with JavaScript */
+  position: fixed /* Stay in place */
+  z-index: 1 /* Stay on top */
+  top: 10vh /* Stay at the top */
+  left: 0
+  background-color: #111 /* Black*/
+  overflow-x: hidden /* Disable horizontal scroll */
+  padding-top: 60px /* Place content 60px from the top */
+  transition: 0.5s /* 0.5 second transition effect to slide in the sidenav */
+  border-bottom-right-radius: 18px
+  border-top-right-radius: 18px
+  padding-bottom: 55px
+
+
+
+/* The navigation menu links */
+.sidenav a
+  font-family: "Open Sans light"
+  padding: 8px 8px 8px 10px
+  text-decoration: none
+  font-size: 22px
+  color: #818181
+  display: block
+  transition: 0.3s
+  cursor: pointer
+
+
+/* When you mouse over the navigation links, change their color */
+.sidenav a:hover
+  color: #f1f1f1
+  cursor: pointer
+
+
+/* Position and style the close button (top right corner) */
+.sidenav .closebtn
+  position: absolute
+  top: 0
+  right: 25px
+  font-size: 36px
+  margin-left: 50px
+  margin-bottom: 5px
+
+
+/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+#main
+  transition: margin-left .5s
+  padding: 20px
+
+#mainJumbotron
+  transition: margin-left .5s
+  padding: 20px
+
+//form
+.searchCategoryForm
+  padding-top: 4px
+
+.searchCategoryButton:hover
+  cursor: pointer
+
+.searchCategoryForm:focus
+  outline: none
+  text-decoration: none
+  -webkit-user-select: none
+  -moz-user-select: none
+  -ms-user-select: none
+  user-select: none
+  -moz-osx-font-smoothing: grayscale
+  -webkit-font-smoothing: antialiased
+
+/* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
+@media only screen and (max-height: 414px) and (max-width: 769px)
+  #cartImageOnShopNav
+    display: none
+
+  #cartImageOnMainNav
+    display: none
+
+  .searchCategoryButton
+    margin-top: 0!important
+
+  .sidenav a
+    padding: 0
+
+  .sidenav
+    top: 0
+    padding-top: 0px!important
+    font-size: 10px!important
+
+  .sidenav .closebtn
+    right: 8px
+
+  .searchCategoryForm
+    padding-top: 0
+
+@media only screen and (max-width: 769px)
+  #cartImageOnShopNav
+    display: none
+
+  #cartImageOnMainNav
+    display: none
+
+  .searchCategoryButton
+    margin-top: 0!important
+
+  .sidenav
+    top: 0
+    padding-top: 50px
+    font-size: 15px
+
+  .searchCategoryForm
+    padding-top: 0
+
+//@media only  screen and (orientation : portrait), (max-device-height: 736px)
+  #cartImage
+    display: none
+  .sidenav
+    top: 30vh
+    padding-top: 50px
+
+
+

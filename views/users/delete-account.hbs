@@ -1,0 +1,23 @@
+{{> includes/logout-nav}}
+<div class="container">
+
+    <div class="row text-center" id="deleteRow1">
+        <div class="col-sm-12 col-md-12 col-lg-12">
+            <h1 class="deleteH">Va multumim ca ati folosit site-ul nostru!</h1>
+            <h3 class="deleteH">Am aprecia mult ca, pro bono, sa ne spuneti de ce ati luat decizia de a va sterge contul..</h3>
+            <a href="mailto:flaviu.ariesanu@evvs.ro">Pentru a ne trimite un mail in acest sens apasati aici!</a>
+            <div class="row text-center" id="deleteRow2">
+                <div class="col-sm-12 col-md-12 col-lg-12" >
+                    <img class="img-fluid" src="/images/logoutmain.svg" alt="" width="50" height="50" style="margin-top: 0px">
+                    {{#if infoMsg}}
+                    <h3 id="deleteH3">{{infoMsg}}</h3>
+                     {{/if}}
+                </div>
+            </div>
+
+            <a href="/users/signup" id="logoutPageButton" style="margin-top: 50px">Poate un nou cont? :)</a>
+        </div>
+    </div>
+</div>
+
+{{> includes/footer-delete_account}}

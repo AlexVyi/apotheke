@@ -1,0 +1,75 @@
+{{> includes/shopping-cart-nav}}
+
+<div class="container-fluid" id="shopIfContainer">
+  <div class="table-responsive-sm">
+        <table class="table table-responsive-sm">
+      {{# if products}}
+            <thead>
+            <tr>
+                <th scope="col" id="subTotalPrice">Cost produse cu ecotaxa: {{subTotalPrice}} lei</th>
+                <th scope="col" id="cartShipmentTh"> Cost transport: {{shipment}} lei
+                <th scope="col" id="tva"> T.V.A: {{tva}} lei</th>
+                <th scope="col" id="totalPrice">Total de plata: {{totalPrice}} lei</th>
+            </tr>
+            </thead>
+            {{# each products}}
+                <tbody id="cartTbody">
+                <tr>
+                    <td><strong>{{@key}}.</strong>  {{this.item.name}}</td>
+                    <td>  <img src="{{this.item.imagePath}}" id="imagePath"></td>
+                    {{#if this.item.color}}
+                        <td>Culoare: {{this.item.color}}</td>
+                    {{else}}
+                        <td>Culoare: ---</td>
+                     {{/if}}
+                    {{# equal item.category "punga generale hartie"}}{{!--the same as in index.we aply the helpers and can make an if comparison--}}
+                        <td>Cantitate: {{this.qty}} bax</td>
+                        <td>Pret unitar: {{this.item.price}} lei/bax</td>
+                    {{else equal item.category "sacose generale hartie"}}
+                        <td>Cantitate: {{this.qty}} x 10 buc.</td>
+                        <td>Pret unitar: {{this.item.price}} lei/10 buc.</td>
+                    {{else equal item.category "saci menajeri"}}
+                        <td>Cantitate: {{this.qty}} rola</td>
+                        <td>Pret unitar: {{this.item.price}} lei/rola.</td>
+                       {{else}}
+                        <td>Cantitate: {{this.qty}} set</td>
+                        <td>Pret unitar: {{this.item.price}} lei/set</td>
+                    {{/equal}}
+                    <td>Ecotaxa: {{this.ecotaxa}} lei</td>
+                    <td>Cost produse: {{this.price}} lei</td>
+
+                    <td id="cartTableData" nowrap>
+                        <a  id="addProduct" href="/add-to-cart-fromInsideCart/{{this.item._id}}">+</a>
+                        <br>
+                        <a  id="deleteProduct" href="/reduce/{{this.item._id}}"> - </a>
+                        <br>
+                        <a  id="removeProduct" href="/remove/{{this.item._id}}">x</a>
+                    </td>
+                </tr>
+              </tbody>
+            {{/each}}
+        </table>
+          <div class="card bg-light p-1" style="border: none" id="cartSwipe">{{!--on mobile tell the user to swipe to see the details--}}
+             <em class="mb-0"> Swipe stanga pentru detalii</em>
+          </div>
+    </div>
+        <div class="flex-md-row  text-center">
+            <a role="button"  id="shopButtonTowardsProd" onclick="goBackTo()">Pagina de produse</a>
+            {{#if login}}
+                <a href="/checkouts" role="button" id="shopButtonPayCard">Spre plata cu card</a>
+                <a href="/checkout-upon-delivery" role="button" id="shopButtonPayCash">Spre plata la livrare</a>
+            {{else}}
+                <a href="/checkout" role="button" id="shopcartbtnNEXT"><span>Pasul urmator</span></a>
+            {{/if}}
+        </div>
+    {{else}}
+        <div class="container text-center" id="shopElseContainer">
+            <h1 class="display-8">Nu aveti nici un produs in cos!</h1>
+            <hr class="my-4">
+            <p class="lead">
+                <a class="btn btn-primary btn-md" href="/" role="button">Catre pagina de produse</a>
+            </p>
+        </div>
+    {{/if}}
+</div>
+

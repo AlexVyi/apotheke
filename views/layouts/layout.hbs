@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html style="height: 100%;margin: 0;padding: 0;">
+<head>
+    <title>apotheke tuten</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script nonce="{{{nonce}}}" src="https://apis.google.com/js/platform.js" async defer></script>
+    <script nonce="{{{nonce}}}" src="https://www.google.com/recaptcha/api.js"></script>
+    <script nonce="{{{nonce}}}" src="https://js.braintreegateway.com/web/dropin/1.10.0/js/dropin.min.js"></script>
+    <link  rel="icon" href="/public/favicon/favicon.ico" type="image/x-icon">
+    <meta property="og:url"           content="https://store.evvs.ro" />
+    <meta property="og:type"          content="website" />
+    <meta property="og:title"         content="evvs store" />
+    <meta property="og:description"   content="pungi si sacose din polietilena si hartie" />
+    {{!--<meta property="og:image"         content="https://www.your-domain.com/path/image.jpg" />--}}
+    <link rel="apple-touch-icon" sizes="57x57" href="/favicon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/favicon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/favicon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/favicon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/favicon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/favicon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/favicon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/favicon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/favicon/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/favicon/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link  href="https://fonts.googleapis.com/css?family=Roboto">
+    <link  rel="stylesheet" href="/fonts/proxima-nova/fonts/fonts.min.css"/>
+    <link  rel="stylesheet" href="/css/bootstrap.css"/>
+    <link  rel='stylesheet' href='/stylesheets/style.css'/>
+</head>
+{{#> head-block}}
+
+{{/head-block}}
+<body id="mainBody"  onload="createDiv()" style="min-height: 100%;margin: 0;padding: 0">
+<noscript>{{!-- case no JS enabled disply this style="background-color: #EDEFF2"--}}
+    <style nonce="{{{nonce}}}" type="text/css">
+        #main {display:none;}
+        .navbar {display:none;}
+        #ham {display:none;}
+    </style>
+    <div class="jumbotron alert-danger" style="text-align: center">
+        Nu aveti JavaScript activata! Ne pare rau, dar site-ul nostru nu functioneaza fara.
+    </div>
+</noscript>
+
+{{{body}}}
+{{#> footer-block}}
+{{/footer-block}}
+
+<script  src="/jquery.js"></script>
+<script  src="/js/bootstrap.js"></script>
+{{!--<script  src="/javascript/loader.js"></script>--}}
+<script  src="/javascript/pretty.js"></script>
+</body>
+</html>

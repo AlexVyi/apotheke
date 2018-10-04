@@ -1,0 +1,322 @@
+{{> includes/checkouts-nav}}
+
+<div class="container">
+    <div class="py-5 text-center">
+        <h2>Formular</h2>
+    </div>
+    <div class="row">
+        {{# if products}}
+            <div class="col-md-4 order-md-2.mb-4"><!--starts the side view of the cart-->
+                <h4 class="d-flex justify-content-between align-items-center mb-3">
+                    <span class="text-muted">Cosul dvs.</span>
+                    <span class="badge badge-secondary badge-pill">{{session.cart.totalQty}} produse</span>
+                </h4>
+                <ul class="list-group mb-3">
+                    {{# each products}}
+                        <li class="list-group-item d-flex justify-content-between lh-condensed">
+                            <div>
+                                <h6 class="my-0">{{this.item.name}}</h6>
+                                <small class="text-muted">{{this.qty}} set</small>
+                            </div>
+                            <span class="text-muted"  style="padding-left: 10px;margin-top: -3px">{{this.price}} lei</span>
+                        </li>
+                    {{/each}}
+                    <li class="list-group-item d-flex justify-content-between">
+                        <span>Cost transport(RON)</span>
+                        <strong>{{session.cart.shipment}} lei</strong>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between">
+                        <span>Cost produse (RON)</span>
+                        <strong>{{subTotalPrice}} lei</strong>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between">
+                        <span>Total (RON)</span>
+                        <strong>{{totalPrice}} lei</strong>
+                    </li>
+
+                </ul>
+
+                {{#if session.cart.shipment}}
+                    <p>Pentru a beneficia de transport gratuit factura trebuie sa fie de 200 lei fara T.V.A</p>
+                {{else}}
+                    <p>Transport gratuit</p>
+                {{/if}}
+                <a class="btn btn-sm" href="/all"  id="home_anchor">Inapoi la pagina de produse</a>
+            </div><!--ends the side view of the cart-->
+        {{/if}}
+
+        <div class="col-md-8 order-md-1">
+            {{#if errMsg}}
+                <div class="alert-danger">
+                    <p>{{errMsg}}</p>
+                </div>
+            {{/if}}
+            <h4 class="mb-3">Adresa de facturare</h4>
+            <form  action="/checkout-upon-delivery" method="post">
+
+                <div class="row">
+                    <div class="col-md-12 mb-3">
+                        <label for="firstName"><span style="color: red">*</span>Prenume</label>
+                        <input type="text" class="form-control" id="firstName"
+                               name="first_name" maxlength="25" required title="Aveti voie intre 3 si 25 de caractere"
+                               placeholder="Nu lasati spatii intre cuvinte. Exemplu de prenume: IonIon ">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 mb-3">
+                        <label for="lastName"><span style="color: red">*</span>Nume</label>
+                        <input type="text" class="form-control" id="lastName"
+                               name="last_name" maxlength="25" required title="Aveti voie intre 3 si 25 de caractere"
+                               placeholder="Nu lasati spatii intre cuvinte. Exemplu de nume: IonIon ">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="email"><span style="color: red">*</span> Email</label>
+                        <input type="email" class="form-control" id="email"
+                               name="email" maxlength="30" required title="Aveti voie intre 3 si 30 de caractere"
+                               placeholder="exemplu@exemplu.com/ro/etc">
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label for="username"><span style="color: red">*</span> Numarul de telefon</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">0040</span>
+                            </div>
+                            <input type="number" class="form-control" id="username"
+                                   name="phone" step="1" min="1" max="9999999999" required title="Aveti voie 10 caractere"
+                                   placeholder="7xxxxxxxx">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <label for="block">Bloc</label>
+                        <input type="text" class="form-control" id="block" name="block" maxlength="5">
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <label for="entrance">Scara</label>
+                        <input type="text" class="form-control" id="entrance" name="entrance"  maxlength="5">
+
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label for="flat">Ap.</label>
+                        <input type="text" class="form-control" id="flat" name="flat"  maxlength="5">
+
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                        <label for="address"><span style="color: red">*</span> Strada</label>
+                        <input type="text" class="form-control" id="street"
+                               name="street" maxlength="35" required title="Aveti voie intre 3 si 35 de caractere"
+                               placeholder="Nu lasati spatii intre cuvinte. Exemplu: MaresalIoanAntonescu">
+                </div>
+
+                <div class="mb-3">
+                        <label for="address2"><span style="color: red">*</span> Oras </label>
+                        <input type="text" class="form-control" id="city"
+                               name="city" maxlength="25" required title="Aveti voie intre 3 si 25 de caractere"
+                               placeholder="Nu lasati spatii intre cuvinte. Exemplu: ClujNapoca">
+                </div>
+
+                <div class="row">
+                    <div class="col-md-3 mb-3">
+                        <label for="number">Numar</label>
+                        <input type="number" class="form-control" id="number" name="number" step="1" min="1" max="999">
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label for="zip"> Cod postal</label>
+                        <input type="text" class="form-control" id="zip" name="zip" step="1" min="1" max="999999">
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="counties">Judet</label>
+                        <select required class="custom-select d-block w-100" id="counties" name="county"> <!--here id=counties and in checkout-not-logged-in id=county-->
+                            <option value="">Alege Judet</option>
+                            <option value="Alba">Alba</option>
+                            <option value="Arad">Arad</option>
+                            <option value="Arges">Arges</option>
+                            <option value="Bacau">Bacau</option>
+                            <option value="Bihor">Bihor</option>
+                            <option value="Bistrita Nasaud">Bistrita Nasaud</option>
+                            <option value="Botosani">Botosani</option>
+                            <option value="Brasov">Brasov</option>
+                            <option value="Braila">Braila</option>
+                            <option value="Bucuresti">Bucuresti</option>
+                            <option value="Buzau">Buzau</option>
+                            <option value="Caras Severin">Caras Severin</option>
+                            <option value="Calarasi">Calarasi</option>
+                            <option value="Cluj">Cluj</option>
+                            <option value="Constanta">Constanta</option>
+                            <option value="Covasna">Covasna</option>
+                            <option value="Dambovita">Dambovita</option>
+                            <option value="Dolj">Dolj</option>
+                            <option value="Galati">Galati</option>
+                            <option value="Giurgiu">Giurgiu</option>
+                            <option value="Gorj">Gorj</option>
+                            <option value="Harghita">Harghita</option>
+                            <option value="Hunedoara">Hunedoara</option>
+                            <option value="Ialomita">Ialomita</option>
+                            <option value="Iasi">Iasi</option>
+                            <option value="Ilfov">Ilfov</option>
+                            <option value="Maramures">Maramures</option>
+                            <option value="Mehedinti">Mehedinti</option>
+                            <option value="Mures">Mures</option>
+                            <option value="Neamt">Neamt</option>
+                            <option value="Olt">Olt</option>
+                            <option value="Prahova">Prahova</option>
+                            <option value="Satu Mare">Satu Mare</option>
+                            <option value="Salaj">Salaj</option>
+                            <option value="Sibiu">Sibiu</option>
+                            <option value="Suceava">Suceava</option>
+                            <option value="Teleorman">Teleorman</option>
+                            <option value="Timis">Timis</option>
+                            <option value="Tulcea">Tulcea</option>
+                            <option value="Vaslui">Vaslui</option>
+                            <option value="Valcea">Valcea</option>
+                            <option value="Vrancea">Vrancea</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="username" style="color: blue!important;margin-top: 100px">Nume companie</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend" >
+                            <span class="input-group-text" >Companie</span>
+                        </div>
+                        <input type="text" class="form-control" id="username"
+                               name="company" maxlength="30"  title="Aveti voie intre 3 si 30 de caractere"
+                               placeholder="Nu lasati spatii intre cuvinte. Exemplu: EuropackWrappingSolutions">
+                    </div>
+                </div>
+                <div class="row"><!---row for companies data-->
+                    <div class="col-md-3 mb-3">
+                        <label for="cui">RO</label>
+                        <input type="number" class="form-control" id="cui" name="cui" step="1" min="1" max="99999999">
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label for="j">J</label>
+                        <input type="text" class="form-control" id="j" name="j" maxlength="20"  title="Aveti voie intre 3 si 20 de caractere">
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="bank">Banca</label>
+                        <input type="text" class="form-control" id="bank"
+                               name="bank" maxlength="30"  title="Aveti voie intre 3 si 30 de caractere"
+                               placeholder="Exemplu: UnicreditBank">
+                    </div>
+                </div><!---ends row for companies data-->
+
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <label for="company_block">Bloc</label>
+                        <input type="text" class="form-control" id="company_block" name="company_block" maxlength="5">
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <label for="company_entrance">Scara</label>
+                        <input type="text" class="form-control" id="company_entrance" name="company_entrance"  maxlength="5">
+
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label for="company_flat">Ap.</label>
+                        <input type="text" class="form-control" id="company_flat" name="company_flat"  maxlength="5">
+
+                    </div>
+                </div>
+
+
+                <div class="mb-3">
+                        <label for="company_street">Strada</label>
+                        <input type="text" class="form-control" id="company_street"
+                               name="company_street"  maxlength="35"  title="Aveti voie intre 3 si 35 de caractere"
+                               placeholder="Nu lasati spatii intre cuvinte. Exemplu: MaresalIoanAntonescu">
+                </div>
+                <div class="mb-3">
+                        <label for="company_city">Oras</label>
+                        <input type="text" class="form-control" id="company_city"
+                               name="company_city" maxlength="30"  title="Aveti voie intre 3 si 30 de caractere"
+                               placeholder="Nu lasati spatii intre cuvinte. Exemplu: ClujNapoca">
+                </div>
+
+
+                <div class="row"><!--row for company address-->
+                    <div class="col-md-3 mb-3">
+                        <label for="company_street_no">Numar</label>
+                        <input type="number" class="form-control" id="company_street_no" name="company_street_no" step="1" min="1" max="999">
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label for="zip">Cod postal</label>
+                        <input type="number" class="form-control" id="zip" name="company_zip" step="1" min="1" max="999999">
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="judete">Judet</label>
+                        <select class="custom-select d-block w-100" id="judete" name="company_county">
+                            <option value="">Alege Judet</option>
+                            <option value="Alba">Alba</option>
+                            <option value="Arad">Arad</option>
+                            <option value="Arges">Arges</option>
+                            <option value="Bacau">Bacau</option>
+                            <option value="Bihor">Bihor</option>
+                            <option value="Bistrita Nasaud">Bistrita Nasaud</option>
+                            <option value="Botosani">Botosani</option>
+                            <option value="Brasov">Brasov</option>
+                            <option value="Braila">Braila</option>
+                            <option value="Bucuresti">Bucuresti</option>
+                            <option value="Buzau">Buzau</option>
+                            <option value="Caras Severin">Caras Severin</option>
+                            <option value="Calarasi">Calarasi</option>
+                            <option value="Cluj">Cluj</option>
+                            <option value="Constanta">Constanta</option>
+                            <option value="Covasna">Covasna</option>
+                            <option value="Dambovita">Dambovita</option>
+                            <option value="Dolj">Dolj</option>
+                            <option value="Galati">Galati</option>
+                            <option value="Giurgiu">Giurgiu</option>
+                            <option value="Gorj">Gorj</option>
+                            <option value="Harghita">Harghita</option>
+                            <option value="Hunedoara">Hunedoara</option>
+                            <option value="Ialomita">Ialomita</option>
+                            <option value="Iasi">Iasi</option>
+                            <option value="Ilfov">Ilfov</option>
+                            <option value="Maramures">Maramures</option>
+                            <option value="Mehedinti">Mehedinti</option>
+                            <option value="Mures">Mures</option>
+                            <option value="Neamt">Neamt</option>
+                            <option value="Olt">Olt</option>
+                            <option value="Prahova">Prahova</option>
+                            <option value="Satu Mare">Satu Mare</option>
+                            <option value="Salaj">Salaj</option>
+                            <option value="Sibiu">Sibiu</option>
+                            <option value="Suceava">Suceava</option>
+                            <option value="Teleorman">Teleorman</option>
+                            <option value="Timis">Timis</option>
+                            <option value="Tulcea">Tulcea</option>
+                            <option value="Vaslui">Vaslui</option>
+                            <option value="Valcea">Valcea</option>
+                            <option value="Vrancea">Vrancea</option>
+                        </select>
+                    </div>
+                </div><!-- ends row for company address-->
+
+                <hr class="mb-4">
+
+                <p><span style="color: red">*</span> Campuri obligatorii!</p>
+                <input type="hidden" name="_csrf" value="{{csrfToken}}">
+                <h4 class="mb-3">Plata la curier</h4>
+                <div class="col-md-4 mb-4">
+                    <input type="hidden" class="form-control" id="payed_upon_delivery_loggedIn" name="payed_upon_delivery_loggedIn" value="payed_upon_delivery_loggedIn" readonly>
+                </div>
+
+                <hr class="mb-4">
+
+                <!--submit upon delivery button-->
+                <button type="submit"  class="submit-button">Trimiteti comanda</button>
+                <!--submit upon delivery button-->
+
+            </form>
+        </div>
+    </div>
+</div>
+{{> includes/footer-checkout-upon_delivery}}

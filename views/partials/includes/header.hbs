@@ -1,0 +1,80 @@
+
+<nav class="navbar fixed-top navbar-expand-lg" id="navbarOnIndex"> {{!--navbar-dark bg-dark (case u wanted dark)--}}
+   <div class="container-fluid">
+        <a class="navbar-brand" href="/" id="brand">EVVS™</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon">&#9776;</span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <form class="form-inline mt-2 mt-md-0" action="/" method="get">
+                <input class="form-control mr-sm-2" type="text" placeholder="Cauta produse" aria-label="Search" name="search" id="searchFormInput">
+                <button class="my-2 my-sm-0" type="submit" id="searchFormButton">Cauta</button>
+            </form>
+           <ul class="navbar-nav mr-auto">
+               <li class="nav-item active">
+                   <a class="nav-link" onclick="openNav()" id="openSideNavButton">Categorii produse<span class="sr-only">(current)</span></a>
+               </li>
+
+           </ul>
+            <img src="/images/cart.svg" width="40" height="40" alt=""  id="cartImageOnMainNav">
+            <ul class="navbar nav navbar-right">
+             {{#if login}}
+                {{# if products}}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/shopping-cart/" role="button">
+                            Cos cumparaturi
+                        <span class="badge badge-dark">{{session.cart.totalQty}} produse</span>
+
+                        </a>
+                    </li>
+                {{else}}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/shopping-cart/" role="button">
+                            Cos cumparaturi
+                            <span class="badge badge-dark">{{session.cart.totalQty}} produse</span>
+
+                        </a>
+                    </li>
+                {{/if}}
+             {{else}}
+                 {{# if products}}
+                         <li class="nav-item">
+                             <a class="nav-link" href="/shopping-cart/" role="button">
+                                 Cos cumparaturi
+                                 <span class="badge badge-dark">{{session.cart.totalQty}} produse</span>
+
+                             </a>
+                         </li>
+                 {{else}}
+                     <li class="nav-item">
+                         <a class="nav-link" href="/shopping-cart/" role="button">
+                             Cos cumparaturi
+                             <span class="badge badge-dark">{{session.cart.totalQty}} produse</span>
+
+                         </a>
+                     </li>
+                 {{/if}}
+             {{/if}}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {{#if login}}
+                            <small id="loggedInSpan">Esti logat</small>
+                        {{/if}}
+                        Contul meu
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        {{#if login}}
+                            <a class="dropdown-item" href="/users/profile" id="dropDownItemLoggedIn"><img src="/images/mydata.svg" width="30" height="30" alt="">Datele mele</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="/users/logout" id="dropDownItemLoggedIn1"><img src="/images/logout.svg" width="20" height="20" alt="">Delogheaza-te</a>
+                        {{else}}
+                            <a class="dropdown-item" href="/users/signup"><img src="/images/newaccount.svg" width="20" height="20" alt="" id="dropDownItemNotLoggedInIMG">Cont nou</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="/users/signin"><img src="/images/login.svg" width="22" height="22" alt=""  id="dropDownItemNotLoggedInIMG1">Intra in cont</a>
+                        {{/if}}
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

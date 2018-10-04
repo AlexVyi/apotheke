@@ -1,0 +1,371 @@
+{{> includes/header}}{{!--include different headers for each view--}}
+
+{{!-- Load Facebook SDK for JavaScript --}}
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0&appId=159399144906205&autoLogAppEvents=1';
+    fjs.parentNode.insertBefore(js, fjs);
+}(document,'script', 'facebook-jssdk'));</script>
+{{!-- Load Facebook SDK for JavaScript --}}
+
+
+{{!-- Side navigation
+<button onclick="openNav()" id="ham"><span id="hamS"></span>Categorii</button> --}}
+<div class="sidenav" id="left_nav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <form class="form-inline mt-2 mt-md-0 searchCategoryForm" action="/plastic_pharmacy_bags" method="get">
+        <button class="my-2 my-sm-0 searchCategoryButton" type="submit">Pungi farmaceutice plastic</button>
+    </form>
+    <form class="form-inline mt-2 mt-md-0 searchCategoryForm" action="/paper_pharmacy_bags" method="get">
+        <button class="my-2 my-sm-0 searchCategoryButton" type="submit">Pungi farmaceutice hartie</button>
+    </form>
+    {{!--<form class="form-inline mt-2 mt-md-0 searchCategoryForm" action="/plastic_vet_pharmacy_bags" method="get">
+        <button class="my-2 my-sm-0 searchCategoryButton" type="submit">Pungi veterinare plastic</button>
+    </form>
+    <form class="form-inline mt-2 mt-md-0 searchCategoryForm" action="/paper_vet_pharmacy_bags" method="get">
+        <button class="my-2 my-sm-0 searchCategoryButton" type="submit">Pungi veterinare hartie</button>
+    </form>
+    <form class="form-inline mt-2 mt-md-0 searchCategoryForm" action="/plastic_shopping_bags" method="get" >
+        <button class="my-2 my-sm-0 searchCategoryButton" type="submit">Sacose generale plastic</button>
+    </form>
+    <form class="form-inline mt-2 mt-md-0 searchCategoryForm" action="/paper_shopping_bags" method="get">
+        <button class="my-2 my-sm-0 searchCategoryButton" type="submit">Sacose generale hartie</button>
+    </form>
+    <form class="form-inline mt-2 mt-md-0 searchCategoryForm" action="/paper_transport_bags" method="get">
+        <button class="my-2 my-sm-0 searchCategoryButton" type="submit">Pungi din hartie</button>
+    </form>
+    <form class="form-inline mt-2 mt-md-0 searchCategoryForm" action="/paper_bakery_bags" method="get">
+        <button class="my-2 my-sm-0 searchCategoryButton" type="submit">Pungi panificatie si coltare</button>
+    </form>
+    <form class="form-inline mt-2 mt-md-0 searchCategoryForm" action="/platter" method="get">
+        <button class="my-2 my-sm-0 searchCategoryButton" type="submit">Tavite</button>
+    </form>
+    <form class="form-inline mt-2 mt-md-0 searchCategoryForm" action="/plastic_transport_bags" method="get">
+        <button class="my-2 my-sm-0 searchCategoryButton" type="submit">Pungi din plastic cu fermoar</button>
+    </form>
+    <form class="form-inline mt-2 mt-md-0 searchCategoryForm" action="/plastic_garbage_bags" method="get">
+        <button class="my-2 my-sm-0 searchCategoryButton" type="submit">Saci menajeri</button>
+    </form>
+    <form class="form-inline mt-2 mt-md-0 searchCategoryForm" action="/all" method="get">
+        <button class="my-2 my-sm-0 searchCategoryButton" type="submit">Toate produsele</button>
+    </form>--}}
+</div>
+{{!-- end side navigation --}}
+{{!--<div class="container" id="loader">
+    <div id="percentage">1%</div>
+</div>--}}
+
+<div class="album py-5" id="main">
+    <div class="container">
+        {{!--<button  onclick="scrollToTop()" id="toTopBtn" style="position: fixed">Sus</button>--}}
+        <div class="row" style="justify-content: space-around">
+            {{#each products}}{{!--loop through ALL products--}}
+                <div class="card-deck">
+                    {{#each this}}{{!--loop through EACH product and get it's properties values--}}
+                        {{#equal category "zipper bags"}}{{!--see helpers for code.if in hbs, has some limitations, so we build a special if, called equal, to be ablle to compare stuff.so it can be translated like 'if category === zipper bags'{do stuff}--}}
+                            <div class="col-sm-12 col-md-6 col-lg-4">
+                                <div class="card mb-4 box-shadow"  style="background-color: #EDEFF2">
+                                    <div class="card-header priceHeader">
+                                        <h6 class="my-0 font-weight-normal h6Index">{{this.name}}</h6>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-5 col-5">
+                                            <img class="card-img-top rounded zoom" src="{{this.imagePath}}" data-holder-rendered="true" id="" onclick="window.open(this.src)">
+                                            <img class="card-img-top rounded zoom" src="{{this.imagePath1}}" data-holder-rendered="true" id="" onclick="window.open(this.src)">
+
+                                        </div>
+                                        <div class="col-sm-7 col-7">
+                                            <div class="row>">
+                                                <div class="col-sm-12 col-12">
+                                                    {{!--google share button--}}
+                                                    <small class="text-muted"><strong class="text-danger">Distribuie</strong> pe Google +</small>
+                                                    <a href="https://plus.google.com/share?url=https://store.evvs.ro{{this.imagePath}}" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=32,width=32');return false;"><img src="/images/share_on_google.png" alt="Share on Google+" height="32" width="32"/></a>
+                                                    {{!--google share button--}}
+                                                </div>
+                                                <div class="col-sm-12 col-12" id="col-12SaveOnFB">
+                                                    <small class="text-muted" ><strong class="text-danger">Salveaza </strong>pe Facebook pentru mai tarziu.</small>
+                                                    {{!-- facebook save button code --}}
+                                                    <div class="fb-save" data-uri="https://store.evvs.ro/" data-size="small"></div>
+                                                    {{!-- facebook save button code --}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <h5 id="priceH5">{{this.price}} lei/100buc.</h5>
+                                    {{#if this.ecotaxa}}
+                                        <small style="color:#259F9c">Preturile nu includ t.v.a si <strong>ecotaxa</strong></small>
+                                    {{else}}
+                                        <small style="color:#259F9c">Preturile nu includ t.v.a</small>
+                                    {{/if}}
+                                    <div class="card-body productBody">
+                                        <div class="card-text">
+                                            {{#if this.color}}
+                                                <h5>Culoare: {{this.color}}</h5>
+                                            {{/if}}
+                                            <article>{{this.description}}</article>
+                                        </div>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <a class="product_button"  href="/shopping-cart">Vezi detalii cos</a>
+                                            <a class="product_button" href="/add-to-cart/{{this._id}}" id="product_button1">Adauga in cos</a>
+                                        </div>
+                                    </div>
+
+                                </div> {{!--end class card--}}
+                            </div>
+                            {{else equal category "punga generale hartie"}}{{!--use else equal, instead of else if, and the last must always be else--}}
+                                <div class="col-sm-12 col-md-6 col-lg-4">
+                                    <div class="card mb-4 box-shadow">
+                                        <div class="card-header priceHeader">
+                                            <h6 class="my-0 font-weight-normal h6Index">{{this.name}}</h6>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-5 col-5">
+                                                <img class="card-img-top rounded zoom" src="{{this.imagePath}}" data-holder-rendered="true" id="" onclick="window.open(this.src)">
+                                                <img class="card-img-top rounded zoom" src="{{this.imagePath1}}" data-holder-rendered="true" id="" onclick="window.open(this.src)">
+
+                                            </div>
+                                            <div class="col-sm-7 col-7">
+                                                <div class="row>">
+                                                    <div class="col-sm-12 col-12">
+                                                        {{!--google share button--}}
+                                                        <small class="text-muted"><strong class="text-danger">Distribuie</strong> pe Google +</small>
+                                                        <a href="https://plus.google.com/share?url=https://store.evvs.ro{{this.imagePath}}" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=32,width=32');return false;"><img src="/images/share_on_google.png" alt="Share on Google+" height="32" width="32"/></a>
+                                                        {{!--google share button--}}
+                                                    </div>
+                                                    <div class="col-sm-12 col-12" id="col-12SaveOnFB">
+                                                        <small class="text-muted" ><strong class="text-danger">Salveaza </strong>pe Facebook pentru mai tarziu.</small>
+                                                        {{!-- facebook save button code --}}
+                                                        <div class="fb-save" data-uri="https://store.evvs.ro/" data-size="small"></div>
+                                                        {{!-- facebook save button code --}}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <h5 id="priceH5">{{this.price}} lei/bax</h5>
+                                        {{#if this.ecotaxa}}
+                                            <small style="color:#259F9c">Preturile nu includ t.v.a si <strong>ecotaxa</strong></small>
+                                        {{else}}
+                                            <small style="color:#259F9c">Preturile nu includ t.v.a</small>
+                                        {{/if}}
+                                        <div class="card-body productBody">
+                                            <div class="card-text">
+                                                {{#if this.color}}
+                                                    <h5>Culoare: {{this.color}}</h5>
+                                                {{/if}}
+                                                <article>{{this.description}}</article>
+                                            </div>
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <a class="product_button"  href="/shopping-cart">Vezi detalii cos</a>
+                                                <a class="product_button" href="/add-to-cart/{{this._id}}" id="product_button1">Adauga in cos</a>
+                                            </div>
+                                        </div>
+                                    </div> {{!--end class card--}}
+                                </div>
+                            {{else equal category "sacose generale hartie"}}
+                                <div class="col-sm-12 col-md-6 col-lg-4">
+                                <div class="card mb-4 box-shadow">
+                                    <div class="card-header priceHeader">
+                                        <h6 class="my-0 font-weight-normal h6Index">{{this.name}}</h6>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-5 col-5">
+                                            <img class="card-img-top rounded zoom" src="{{this.imagePath}}" data-holder-rendered="true" id="" onclick="window.open(this.src)">
+                                            <img class="card-img-top rounded zoom" src="{{this.imagePath1}}" data-holder-rendered="true" id="" onclick="window.open(this.src)">
+
+                                        </div>
+                                        <div class="col-sm-7 col-7">
+                                            <div class="row>">
+                                                <div class="col-sm-12 col-12">
+                                                    {{!--google share button--}}
+                                                    <small class="text-muted"><strong class="text-danger">Distribuie</strong> pe Google +</small>
+                                                    <a href="https://plus.google.com/share?url=https://store.evvs.ro{{this.imagePath}}" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=32,width=32');return false;"><img src="/images/share_on_google.png" alt="Share on Google+" height="32" width="32"/></a>
+                                                    {{!--google share button--}}
+                                                </div>
+                                                <div class="col-sm-12 col-12" id="col-12SaveOnFB">
+                                                    <small class="text-muted" ><strong class="text-danger">Salveaza </strong>pe Facebook pentru mai tarziu.</small>
+                                                    {{!-- facebook save button code --}}
+                                                    <div class="fb-save" data-uri="https://store.evvs.ro/" data-size="small"></div>
+                                                    {{!-- facebook save button code --}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <h5 id="priceH5">{{this.price}} lei/10buc.</h5>
+                                    {{#if this.ecotaxa}}
+                                        <small style="color:#259F9c">Preturile nu includ t.v.a si <strong>ecotaxa</strong></small>
+                                    {{else}}
+                                        <small style="color:#259F9c">Preturile nu includ t.v.a</small>
+                                    {{/if}}
+                                    <div class="card-body productBody">
+                                        <div class="card-text">
+                                            {{#if this.color}}
+                                                <h5>Culoare: {{this.color}}</h5>
+                                            {{/if}}
+                                            <article>{{this.description}}</article>
+                                        </div>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <a class="product_button"  href="/shopping-cart">Vezi detalii cos</a>
+                                            <a class="product_button" href="/add-to-cart/{{this._id}}" id="product_button1">Adauga in cos</a>
+                                        </div>
+                                    </div>
+                                </div> {{!--end class card--}}
+                            </div>
+                            {{else equal category "saci menajeri"}}
+                                <div class="col-sm-12 col-md-6 col-lg-4">
+                                <div class="card mb-4 box-shadow">
+                                    <div class="card-header priceHeader">
+                                        <h6 class="my-0 font-weight-normal h6Index">{{this.name}}</h6>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-5 col-5">
+                                            <img class="card-img-top rounded zoom" src="{{this.imagePath}}" data-holder-rendered="true" id="" onclick="window.open(this.src)">
+                                            <img class="card-img-top rounded zoom" src="{{this.imagePath1}}" data-holder-rendered="true" id="" onclick="window.open(this.src)">
+
+                                        </div>
+                                        <div class="col-sm-7 col-7">
+                                            <div class="row>">
+                                                <div class="col-sm-12 col-12">
+                                                    {{!--google share button--}}
+                                                    <small class="text-muted"><strong class="text-danger">Distribuie</strong> pe Google +</small>
+                                                    <a href="https://plus.google.com/share?url=https://store.evvs.ro{{this.imagePath}}" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=32,width=32');return false;"><img src="/images/share_on_google.png" alt="Share on Google+" height="32" width="32"/></a>
+                                                    {{!--google share button--}}
+                                                </div>
+                                                <div class="col-sm-12 col-12" id="col-12SaveOnFB">
+                                                    <small class="text-muted" ><strong class="text-danger">Salveaza </strong>pe Facebook pentru mai tarziu.</small>
+                                                    {{!-- facebook save button code --}}
+                                                    <div class="fb-save" data-uri="https://store.evvs.ro/" data-size="small"></div>
+                                                    {{!-- facebook save button code --}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <h5 id="priceH5">{{this.price}} lei/rola</h5>
+                                    {{#if this.ecotaxa}}
+                                        <small style="color:#259F9c">Preturile nu includ t.v.a si <strong>ecotaxa</strong></small>
+                                    {{else}}
+                                        <small style="color:#259F9c">Preturile nu includ t.v.a</small>
+                                    {{/if}}
+                                    <div class="card-body productBody">
+                                        <div class="card-text">
+                                            {{#if this.color}}
+                                                <h5>Culoare: {{this.color}}</h5>
+                                            {{/if}}
+                                            <article>{{this.description}}</article>
+                                        </div>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <a class="product_button"  href="/shopping-cart">Vezi detalii cos</a>
+                                            <a class="product_button" href="/add-to-cart/{{this._id}}" id="product_button1">Adauga in cos</a>
+                                        </div>
+                                    </div>
+                                </div> {{!--end class card--}}
+                            </div>
+                            {{else equal category "pungi panificatie si coltare"}}{{!--this was added only for changing the height of the card-text.we needed a special height for this due to the description--}}
+                            <div class="col-sm-12 col-md-6 col-lg-4">
+                                <div class="card mb-4 box-shadow">
+                                    <div class="card-header priceHeader">
+                                        <h6 class="my-0 font-weight-normal h6Index">{{this.name}}</h6>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-5 col-5">
+                                            <img class="card-img-top rounded zoom" src="{{this.imagePath}}" data-holder-rendered="true" id="" onclick="window.open(this.src)">
+                                            <img class="card-img-top rounded zoom" src="{{this.imagePath1}}" data-holder-rendered="true" id="" onclick="window.open(this.src)">
+
+                                        </div>
+                                        <div class="col-sm-7 col-7">
+                                            <div class="row>">
+                                                <div class="col-sm-12 col-12">
+                                                    {{!--google share button--}}
+                                                    <small class="text-muted"><strong class="text-danger">Distribuie</strong> pe Google +</small>
+                                                    <a href="https://plus.google.com/share?url=https://store.evvs.ro{{this.imagePath}}" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=32,width=32');return false;"><img src="/images/share_on_google.png" alt="Share on Google+" height="32" width="32"/></a>
+                                                    {{!--google share button--}}
+                                                </div>
+                                                <div class="col-sm-12 col-12" id="col-12SaveOnFB">
+                                                    <small class="text-muted" ><strong class="text-danger">Salveaza </strong>pe Facebook pentru mai tarziu.</small>
+                                                    {{!-- facebook save button code --}}
+                                                    <div class="fb-save" data-uri="https://store.evvs.ro/" data-size="small"></div>
+                                                    {{!-- facebook save button code --}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <h5 id="priceH5">{{this.price}} lei/100buc.</h5>
+                                    {{#if this.ecotaxa}}
+                                        <small style="color:#259F9c">Preturile nu includ t.v.a si <strong>ecotaxa</strong></small>
+                                    {{else}}
+                                        <small style="color:#259F9c">Preturile nu includ t.v.a</small>
+                                    {{/if}}
+                                    <div class="card-body productBody">
+                                        <div class="card-text" style="height: 170px">
+                                            {{#if this.color}}
+                                                <h5>Culoare: {{this.color}}</h5>
+                                            {{/if}}
+                                            <article>{{this.description}}</article>
+                                        </div>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <a class="product_button"  href="/shopping-cart">Vezi detalii cos</a>
+                                            <a class="product_button" href="/add-to-cart/{{this._id}}" id="product_button1">Adauga in cos</a>
+                                        </div>
+                                    </div>
+                                </div> {{!--end class card--}}
+                            </div>
+                        {{else}}
+                                <div class="col-sm-12 col-md-6 col-lg-4">
+                                <div class="card mb-4 box-shadow">
+                                    <div class="card-header priceHeader">
+                                        <h6 class="my-0 font-weight-normal h6Index">{{this.name}}</h6>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-5 col-5">
+                                            <img class="card-img-top rounded zoom" src="{{this.imagePath}}" data-holder-rendered="true" id="" onclick="window.open(this.src)">
+                                            <img class="card-img-top rounded zoom" src="{{this.imagePath1}}" data-holder-rendered="true" id="" onclick="window.open(this.src)">
+
+                                        </div>
+                                        <div class="col-sm-7 col-7">
+                                            <div class="row>">
+                                                <div class="col-sm-12 col-12">
+                                                    {{!--google share button--}}
+                                                    <small class="text-muted"><strong class="text-danger">Distribuie</strong> pe Google +</small>
+                                                    <a href="https://plus.google.com/share?url=https://store.evvs.ro{{this.imagePath}}" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=32,width=32');return false;"><img src="/images/share_on_google.png" alt="Share on Google+" height="32" width="32"/></a>
+                                                    {{!--google share button--}}
+                                                </div>
+                                                <div class="col-sm-12 col-12" id="col-12SaveOnFB">
+                                                    <small class="text-muted" ><strong class="text-danger">Salveaza </strong>pe Facebook pentru mai tarziu.</small>
+                                                    {{!-- facebook save button code --}}
+                                                    <div class="fb-save" data-uri="https://store.evvs.ro/" data-size="small"></div>
+                                                    {{!-- facebook save button code --}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <h5 id="priceH5">{{this.price}} lei/100buc.</h5>
+                                    {{#if this.ecotaxa}}
+                                        <small style="color:#259F9c">Preturile nu includ t.v.a si <strong>ecotaxa</strong></small>
+                                    {{else}}
+                                        <small style="color:#259F9c">Preturile nu includ t.v.a</small>
+                                    {{/if}}
+                                    <div class="card-body productBody">
+                                        <div class="card-text">
+                                            {{#if this.color}}
+                                                <h5>Culoare: {{this.color}}</h5>
+                                            {{/if}}
+                                            <article>{{this.description}}</article>
+                                        </div>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <a class="product_button"  href="/shopping-cart">Vezi detalii cos</a>
+                                            <a class="product_button" href="/add-to-cart/{{this._id}}" id="product_button1">Adauga in cos</a>
+                                        </div>
+                                    </div>
+                                </div> {{!--end class card--}}
+                            </div>
+                        {{/equal}}{{!--ends equal category === zipper--}}
+                    {{/each}}
+                </div>
+            {{/each}}
+        </div>
+    </div>
+</div>
+
+{{> includes/footer}}

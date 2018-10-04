@@ -1,0 +1,57 @@
+{{> includes/signup-nav}}
+<div class="container" id="signUpContainer" style="margin-top: 12vh">
+    <div class="row">
+        <div class="col-sm-6" id="signUpFormCol" style="opacity: 0.01;">
+            <form action="/users/signup" method="post" class="form-signin text-center">
+                <h1 class="h3 mb-3 font-weight-normal signUpH3">Creaza cont</h1>
+                {{#if hasErrors}}
+                    <div class="alert-danger">
+                        {{# each messages}}
+                            <p>{{this}}</p>
+                        {{/each}}
+                    </div>
+                {{/if}}
+                <label for="inputEmail" class="sr-only">Adresa de email</label>
+                <input type="text" name="email" id="inputEmail" class="form-control" placeholder="Adresa de email" required="" autofocus="">
+
+                <label for="inputPassword" class="sr-only">Parola</label>
+                <input type="password" name="password" id="inputPasswordSup" class="form-control" placeholder="Parola" required="">
+                <label for="confirmPassword" class="sr-only">Verifica parola</label>
+                <input type="password" name="confirm" id="inputVerifyPassword" class="form-control" placeholder="Verifica parola" required="">
+
+                <input type="hidden" name="_csrf" value="{{csrfToken}}">
+
+                <div class="g-recaptcha" data-sitekey="6LeDPkgUAAAAAE-br98bjIFSipP6zomAWuzUl5lB"></div>
+                <button class="btn btn-lg btn-primary" type="submit" id="submit_account_btn">Inregistreaza contul</button>
+                <a class="loginBtn loginBtn--google" role="button" href="/auth/google" style="text-decoration: none" id="lgn_Ggl_on_sign_up">Login with Google<span class="popover above">La prima inregistrare, daca nu exista, contul este creat automat!</span></a>
+                <a class="qs" role="button"  href="/auth/facebook"><img src="/images/login-facebook.jpg" height="53" width="250" id="lgnFB_on_sign_up"><span class="popover above">La prima inregistrare, daca nu exista, contul este creat automat!</span> </a>
+
+                <p class="mt-5 mb-3 text-muted">©2018 EVVS™</p>
+            </form>
+        </div>
+
+        <div class="col-sm-6" id="signUpPictureCol" style="opacity: 0.01;">
+            <div class="row text-center">
+                <div class="col-sm-12">
+                    <img class="mb-4" src="/images/signin.jpg" alt="" width="180" height="180">
+                </div>
+            </div>
+            <div class="row text-center">
+                <div class="col-sm-12">
+                    <h3 class="signUpH3">De ce sa iti faci cont?</h3>
+                    <p class="pSignUpRight">Automatizezi un proces.</p>
+                    <p class="pSignUpRight">Iti vezi comenzile in timp real si poti face astfel o statistica a consumului de sacose si pungi.</p>
+                    <p class="pSignUpRight">Poti exporta comenzile in format pdf.</p>
+                    <p class="pSignUpRight">Beneficiezi de programul de loialitate!</p>
+                    <p class="pSignUpRight">Te asteapta o surpriza in cont, pe care trebuie sa fii curios ca sa o descoperi.</p>
+                    <p class="pSignUpRight"><strong>Poti</strong> oricand sa iti stergi contul fara nici un fel de intrebare din partea noastra.Un singur click este suficient.</p>
+                  
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+

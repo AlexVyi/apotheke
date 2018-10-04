@@ -1,0 +1,33 @@
+<div class="container" style="margin-top: 5px">
+    <img class="d-block mx-auto mb-4" src="/images/error.svg">
+    <h1 class="text-center">Eroarea este :
+        {{#if errMsg}}
+        <span>{{errMsg}}</span>
+        {{/if}}
+       {{#if message}}
+        <span>{{message}}</span></h1>
+       {{/if}}
+    {{#if hasErrors}}
+        <div class="alert-danger">
+            {{# each messages}}
+                <p>{{this}}</p>
+            {{/each}}
+        </div>
+    {{/if}}
+    <hr>
+    <h2 class="text-center">Va rugam sa nu va speriati!</h2>
+    <hr>
+    <h5 class="text-center">
+        In caz ca vedeti aceasta pagina, a aparut o eroare.Va rugam sa ne comunicati eroarea pe mail ul.....Ne ajutati in felul acesta la
+        imbunatatirea experientei dvs. ca utilizator.
+        <hr>
+        Va rugam sa reincercati apoi din nou si daca eroarea persista sa ne contactati la numarul
+        de telefon...
+    </h5>
+    <hr>
+    <p class="lead text-center">
+        <a class="btn btn-primary btn-md" href="/" role="button">Catre pagina de produse</a>
+    </p>
+</div>
+
+{{> includes/footer-error}}

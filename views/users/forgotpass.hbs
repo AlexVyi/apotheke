@@ -1,0 +1,31 @@
+<div class="container text-center">
+<form action="/users/forgot" method="post" class="form-signin text-center">
+    <h1 class="h3 mb-3 font-weight-normal">Reseteaza parola</h1>
+    {{#if hasErrors}}
+        <div class="alert-danger">
+            {{# each messages}}
+                <p>{{this}}</p>
+            {{/each}}
+        </div>
+    {{/if}}
+    {{#if hasInfo}}
+        <div class="alert-success">
+            {{# each infoMessages}}
+                <p>{{this}}</p>
+            {{/each}}
+        </div>
+    {{/if}}
+    <label for="inputEmail" class="sr-only">Email address</label>
+    <input type="text" name="email" id="inputEmail" class="form-control" placeholder="Adresa de e-mail" required="" autofocus="">
+
+    <input type="hidden" name="_csrf" value="{{csrfToken}}">
+
+    <button class="btn btn-lg btn-outline-primary btn-block" id="buttonForgotPass" type="submit">Reseteaza</button>
+    <p class="mt-5 mb-3 text-muted">©2018 EVVS™</p>
+</form>
+</div>
+<div class="container text-center">
+    <img class="mb-4" src="/images/resetpass.svg" alt="" width="172" height="172">
+</div>
+
+{{> includes/footer-success}}
