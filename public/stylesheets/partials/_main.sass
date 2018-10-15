@@ -1,4 +1,8 @@
 //contains index.hbs which was the original intended landing page and main.hbs
+#footerCtxOnMain
+  background-color: #e9ecef
+  position: absolute
+  bottom: 0
 
 #priceH5
   font-family: "Proxima Nova", Georgia, sans-serif
@@ -127,6 +131,8 @@ i:hover:after
     width: 100%
     font-size: 10px
     font-weight: 400
+  .searchCategoryButtonOnMain
+    white-space: nowrap
 
 @media screen and (min-width: 768px) //disable zoom on smaller screen due to the tap event
   .zoom
@@ -135,10 +141,17 @@ i:hover:after
    height: auto
    width: 120px
    display: block
-
   .zoom:hover
    cursor: pointer
    -ms-transform: scale(0.5) /* IE 9 */
    -webkit-transform: scale(2.0) /* Safari 3-8 */
    transform: scale(2.0)
+
+@media screen and (max-width: 812px)
+  #footerCtxOnMain
+    position: initial
+  .img-thumbnail
+    margin-left: 11%
+  .searchCategoryButtonOnMain
+    margin-left: 11%
 

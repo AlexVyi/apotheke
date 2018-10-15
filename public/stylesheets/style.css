@@ -47,6 +47,11 @@
   font-weight: 700;
   font-style: normal; }
 
+#footerCtxOnMain {
+  background-color: #e9ecef;
+  position: absolute;
+  bottom: 0; }
+
 #priceH5 {
   font-family: "Proxima Nova", Georgia, sans-serif; }
 
@@ -166,7 +171,9 @@ i:hover:after {
     margin-top: 8px;
     width: 100%;
     font-size: 10px;
-    font-weight: 400; } }
+    font-weight: 400; }
+  .searchCategoryButtonOnMain {
+    white-space: nowrap; } }
 
 @media screen and (min-width: 768px) {
   .zoom {
@@ -180,6 +187,14 @@ i:hover:after {
     -ms-transform: scale(0.5);
     -webkit-transform: scale(2);
     transform: scale(2); } }
+
+@media screen and (max-width: 812px) {
+  #footerCtxOnMain {
+    position: initial; }
+  .img-thumbnail {
+    margin-left: 11%; }
+  .searchCategoryButtonOnMain {
+    margin-left: 11%; } }
 
 .navbar {
   background-color: white; }

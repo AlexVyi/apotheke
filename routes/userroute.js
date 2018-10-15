@@ -2,7 +2,7 @@
 var express = require('express');
 var router = express.Router();
 var Recaptcha = require('express-recaptcha').Recaptcha
-var recaptcha = new Recaptcha('6LeDPkgUAAAAAE-br98bjIFSipP6zomAWuzUl5lB','6LeDPkgUAAAAAAetkTbKoGgg3PELSD9s3oh0cSqH');//data key , secret key
+var recaptcha = new Recaptcha('6LfazXMUAAAAAGg9Lk6aZOYNjsVEcYkARK9aSur1','6LfazXMUAAAAAKAgx19hPR8KXqnC1rBvFShnUjZS');//data key , secret key
 var csrf = require('csurf');
 var passport = require('passport');
 var forgotPass = require('../routes_logic/forgotPass');

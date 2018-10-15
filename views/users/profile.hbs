@@ -114,7 +114,7 @@
                     {{/each}}
                 </div>
             {{/if}}
-            <form action="/users/profile/sendOpinion" method="post" id="sendOpinionForm">{{!--if not this /../../sendOpinion route on form action, it acts as if submiting the next form and thwrows error because of the lack of the credentials--}}
+            <form action="/users/profile/sendOpinion" method="post" id="sendOpinionForm">{{!--if not this /users/profile/sendOpinion route on form action, it acts as if submiting the next form and thwrows error because of the lack of the credentials--}}
                 {{#if hasErrors}}
                     <h3 class="h3 mb-3 h3Opinion">dar pentru ca ne-ati testat vigilenta, mai primiti 5% discount la urmatoarea comanda.</h3>
                     <small>*Oferta este valabila pentru o singura comanda</small>
@@ -153,7 +153,7 @@
 </div>
 
 <div class="container" id="changePassProfileContainer">
-    {{#if session.userG}}{{!-- if session with google u dont need 'change pass form' and the 'delete account form' wiht password --}}
+    {{#if session.userG}}{{!-- if session with google(userG is assigned in app.js together with the user from normal login session) u dont need 'change pass form' and the 'delete account form' wiht password --}}
         <div class="row text-center" style="margin-top: 50px">
             <div class="col-sm-6">
                 <h4 class="text-center">Zona pericol</h4>
@@ -171,7 +171,7 @@
                 <small>Atentie!Datele vor fii irecuperabile.</small>
             </div>
         </div>
-    {{else if session.userFb}}{{!-- if session with facebook u dont need 'change pass form' and the 'delete account form' wiht password --}}
+    {{else if session.userFb}}{{!-- if session with facebook(userFb is assigned in app.js together with the user from normal login session) u dont need 'change pass form' and the 'delete account form' wiht password --}}
         <div class="row text-center" style="margin-top: 50px">
             <div class="col-sm-6">
                 <h4 class="text-center">Zona pericol</h4>

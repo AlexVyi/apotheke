@@ -63,7 +63,7 @@ app.use(helmet.referrerPolicy({policy: 'same-origin', }));
 app.use(helmet.xssFilter());
 
 // enable the nonce to equal a random string generator to be used along side the csp module.see helmet js to see how  the csp header is set
-app.use((req, res, next) => {
+app.use(function(req, res, next){
  res.locals.nonce = nonceString()
  var nonce = "'nonce-" + res.locals.nonce + "'"
  next()
@@ -115,7 +115,7 @@ if (app.get('env') === 'development') {
   mongoose.connect(credMdb.mongoDb_DEV.dbURI, {useNewUrlParser: true, }, (err) => {
     //console.log('connected to apotheke on vps1')
     if (err) throw  err;
-  }, {"useMongoClient": true,});
+  }, {"useMongoClient": true});
 
 }
 if (app.get('env') === 'production') {
@@ -123,7 +123,7 @@ if (app.get('env') === 'production') {
   mongoose.connect(credMdb.mongoDb_PRODUCTION.dbURI, (err) => {
     //console.log('connected to apotheke on ATLAS')
     if (err) throw  err;
-  }, {"useMongoClient": true,});
+  }, {"useMongoClient": true});
 
 }
 if (app.get('env') === 'test') {
@@ -131,7 +131,7 @@ if (app.get('env') === 'test') {
   mongoose.connect(credMdb.mongoDb_TEST.dbURI, (err) => {
     //console.log('connected to test on vps1')
     if (err) throw  err;
-  }, {"useMongoClient": true,});
+  }, {"useMongoClient": true});
 
 }
 
@@ -146,8 +146,8 @@ app.engine('.hbs', hbsHelpers.engine);
 app.set('view engine', '.hbs');
 
 app.use(bodyParser.urlencoded({extended: false, }));
-app.use(bodyParser.json());
-app.use(bodyParser.json({type: 'application/csp-report', }));
+app.use(bodyParser.json({type:'application/json'}));
+app.use(bodyParser.json({type: 'application/csp-report'}));
 app.use(validator());
 /*
  *app.use(cookieParser());
@@ -185,7 +185,7 @@ app.use(sassMiddleware({
 app.use(favicon(path.join(`${__dirname  }/public/favicon/favicon.ico`)));
 app.use(express.static(`${__dirname  }/node_modules/jquery/dist`));
 app.use(express.static(`${__dirname  }/node_modules/bootstrap/dist`));
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join( 'public')));
 
 
 // makes login and session available in all views
@@ -193,7 +193,6 @@ app.use((req,res,next) => {
   res.locals.login = req.isAuthenticated();//this makes the login variable available in all views in order to differentiate login views from the rest
   res.locals.session = req.session;//make the session variable available in all views
   if(req.user){//if we have a user make available only the id
-
     req.session.user = req.user.id
     req.session.userG = req.user.googleId
     req.session.userFb = req.user.facebookId
